@@ -7,3 +7,29 @@
 2019-08-06 16:01:24,381 - INFO - Client was detected 127.0.0.1:64944
 2019-08-06 16:01:30,588 - INFO - Client send valid request {'action': 'echo', 'time': 1565089290.580928, 'data': 'test'}
 2019-08-06 16:01:30,589 - DEBUG - get_echo: {'action': 'echo', 'time': 1565089290.580928, 'data': 'test'}
+2019-08-07 22:57:07,606 - INFO - Server was started with localhost:8000
+2019-08-07 22:59:29,432 - INFO - Server was started with localhost:8000
+2019-08-08 21:37:10,896 - INFO - Server was started with localhost:8000
+2019-08-08 21:37:30,493 - INFO - Server was started with localhost:8000
+2019-08-08 21:51:17,690 - INFO - Server was started with localhost:8000
+2019-08-08 21:57:24,286 - INFO - Server was started with localhost:8000
+2019-08-08 21:57:49,206 - INFO - Server was started with localhost:8000
+2019-08-08 21:58:50,029 - INFO - Server was started with localhost:8000
+2019-08-08 22:15:43,259 - INFO - Server was started with localhost:8000
+2019-08-08 22:16:04,793 - INFO - Server was started with localhost:8000
+2019-08-08 22:16:46,338 - INFO - Client was detected 127.0.0.1:51660
+2019-08-08 22:18:18,293 - INFO - Client was detected 127.0.0.1:51741
+2019-08-08 22:19:21,688 - INFO - Server was started with localhost:8000
+2019-08-08 22:19:53,123 - INFO - Client was detected 127.0.0.1:51812
+2019-08-08 22:20:46,484 - INFO - Client was detected 127.0.0.1:51854
+2019-08-08 22:21:32,932 - INFO - Client was detected 127.0.0.1:51890
+2019-08-08 22:23:05,990 - INFO - Server was started with localhost:8000
+2019-08-08 22:23:09,813 - INFO - Client was detected 127.0.0.1:51959
+2019-08-08 22:23:35,112 - INFO - Client was detected 127.0.0.1:51984
+2019-08-08 22:24:23,394 - INFO - Client was detected 127.0.0.1:52017
+2019-08-08 22:26:27,358 - INFO - Server was started with localhost:8000
+2019-08-08 22:26:51,031 - INFO - Server was started with localhost:8000
+2019-08-08 22:27:06,592 - INFO - Server was started with localhost:8000
+2019-08-08 22:27:20,679 - INFO - Server was started with localhost:8000
+2019-08-08 22:42:19,943 - INFO - Server was started with localhost:8000
+2019-08-08 22:47:48,398 - INFO - Server was started with localhost:8000
