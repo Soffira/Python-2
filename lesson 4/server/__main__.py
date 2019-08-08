@@ -1,11 +1,13 @@
 import yaml
 import json
 import socket
+import select
 import logging
 from argparse import ArgumentParser
 
 from actions import resolve
 from protocol import validate_request, make_response
+from handlers import handle_default_request
 
 parser = ArgumentParser()
 
@@ -36,43 +38,43 @@ logging.basicConfig(
     ]
 )
 
+requests = []
+connections = []
+
 host, port = config.get('host'), config.get('port')
 
 try:
     sock = socket.socket()
     sock.bind((host, port))
+    sock.setblocking(False)
+    sock.settimeout(0)
     sock.listen(5)
     
     logging.info(f'Server was started with { host }:{ port }')
     
     while True:
-        client, address = sock.accept()
-        logging.info(f'Client was detected { address[0] }:{address[1] }')
-        
-        b_request = client.recv(config.get('buffersize'))
-        
-        request = json.loads(b_request.decode())
-        
-        if validate_request(request):
-            actions_name = request.get('action')
-            controller = resolve(actions_name)
-            if controller:
-                try:
-                    logging.info(f'Client send valid request {request}')
-                    response = controller(request)
-                except Exception as err:
-                    logging.critical(f'Internet server error: {err}')
-                    response = make_response(request, 500, data='Internet server error')
-            else:
-                logging.error(f'Controller with action name {actions_name} does not exists')
-                response = make_response(request, 404, 'Action not found')
-        else:
-            logging.error(f'Client send invalid request { request }')
-            response = make_response(request, 400, 'Wrong request')
-            
-        str_response = json.dumps(response)
-        client.send(str_response.encode())
-    
-    
+        try:
+            client, address = sock.accept()
+            logging.info(f'Client was detected { address[0] }:{address[1] }')
+            connections.append(client)
+        except:
+            pass
+
+        rlist, wlist, xlist = select.select(
+            connections, connections, connections, 0)
+
+
+        for read_client in rlist:
+            bytes_request = read_client.recv(config.get('buffersize'))
+            requests.append(bytes_request)
+
+        if requests:
+            bytes_request = requests.pop()
+            bytes_response = handle_default_request(bytes_request)
+
+            for write_client in wlist:
+                write_client.send(bytes_response)
+
+
 except KeyboardInterrupt:
     print('Server shutdown.')
